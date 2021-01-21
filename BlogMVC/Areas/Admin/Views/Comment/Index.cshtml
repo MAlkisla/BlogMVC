@@ -1,0 +1,50 @@
+﻿@model List<Comment>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Yazılarım</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Ayar</th>
+                        <th>Yorum</th>
+                        <th>Yazı</th>
+                        <th>İsim</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center align-items-center">
+                                    <a class="btn-sm btn-danger btn-circle align-items-center" href="@Url.Action("Delete","Comment", new { id = item.Id })"><i class="fas fa-trash"></i></a>
+                                </td>
+                                <td>@item.CommentText</td>
+                                <td>@item.Article.ArticleTitle</td>
+                                <td>@item.CommentAuthor</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#dataTable").DataTable();
+    </script>
+}
+

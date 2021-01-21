@@ -1,0 +1,71 @@
+﻿@model List<CategoryViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.sonuc))
+{
+    <div id="alertCate" class="alert alert-info">
+        @switch (ViewBag.sonuc)
+        {
+            case "silindi":
+                <text> Kategori başarıyla silindi.</text>
+                break;
+            case "silinemez":
+                <text> Kategoriye ait başka yazarların yazıları bulunduğu için silemezsin.</text>
+                break;
+        }
+    </div>
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Yazılarım</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Sana Ait Yazı Sayısı</th>
+                        <th>Ayar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CategoryName</td>
+                                <td>@item.QuantityC</td>
+                                <td class="d-flex">
+
+                                    @using (Html.BeginForm("Delete", "Category", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("Id", item.Id, new { id = "Id" + item.Id })
+                                        <button type="submit" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#dataTable").DataTable();
+
+        setTimeout(function () {
+            $("#alertCate").hide()
+        }, 2000);
+    </script>
+}

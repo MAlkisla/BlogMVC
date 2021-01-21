@@ -1,0 +1,33 @@
+﻿@model BlogMVC.Models.Category
+
+@{
+    ViewBag.Title = "NewCategory";
+}
+
+<h4>Yeni Kategori</h4>
+@if (!string.IsNullOrEmpty(ViewBag.sonuc))
+{
+    <div class="alert alert-info">
+        @ViewBag.sonuc
+    </div>
+}
+
+@using (Html.BeginForm("NewCaegory","Category", FormMethod.Post, new { @class = "col-md-6"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2"> Kategori İsmi</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" ,required ="required"} })
+        </div>
+    </div>
+        <div class="from-group col-md-10">
+            <button class="btn btn-warning">Ekle</button>
+        <a href="@Url.Action("Index","Category")" class="btn btn-info">Geri</a>
+        </div>
+    </div>
+}

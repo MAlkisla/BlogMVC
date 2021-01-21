@@ -1,0 +1,93 @@
+﻿@model Article
+@{
+    ViewBag.Title = "NewArticle";
+}
+
+<div class="row">
+    <h2>New Article</h2>
+    @using (Html.BeginForm("NewArticle", "Articles", FormMethod.Post, new { @class = "col-md-12", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Category</label>
+                    @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.categories, "Id", "CategoryName"), "Kategori Seçiniz", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ArticleTitle)
+                    @Html.TextBoxFor(x => x.ArticleTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ArticleTitle)
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    @Html.TextBoxFor(x => x.Tags, new { @class = "form-control", required = "required", @data_role = "tagsinput" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ArticlePhoto)
+                    @Html.TextBox("file", null, new { type = "file", @class = "form-control", onchange = "ResimYukle(this)", required = "required" })
+                    @Html.ValidationMessageFor(x => x.ArticlePhoto)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img width="75%" id="targetImage" src="https://place-hold.it/1920x1080?text=Resim%20Yok%20(Tavsiye%20Edilen%201920x1080)&fontsize=60" alt="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.ArticleContent)
+            @Html.TextAreaFor(x => x.ArticleContent, new { @class = "ckeditor" })
+            @*<textarea name="ArticleContent" id="ArticleContent" minlength="200" class="form-control" height="250" ></textarea>*@
+            @*@Html.TextAreaFor(x => x.ArticleContent, htmlAttributes: new { @class = "form-control", required = "required", minlength = "500" })*@
+            @*@Html.ValidationMessageFor(x => x.ArticleContent)*@
+        </div>
+        <button type="submit" class="btn btn-warning float-right">
+            <i class="fas fa-plus"></i> Yazı Ekle
+        </button>
+
+    }
+
+</div>
+
+
+@section scripts{
+    <script>
+        function ResimYukle(input) {
+
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#targetImage").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+                $("#targetImage").show();
+            }
+        }
+
+        @*function Kaydet() {
+            var file = $("#inputImageBrowser").get(0).files;
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+
+        $.ajax({
+            type: "post",
+            dataType: "JSON",
+            url: "@Url.Action("NewArticle","Articles")",
+            //url: "/Fotograf/Ekle",
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+        });
+        }*@
+
+    </script>
+}
+

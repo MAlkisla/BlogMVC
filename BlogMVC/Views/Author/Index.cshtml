@@ -1,0 +1,77 @@
+﻿@model List<ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="wow fadeIn bg-light-gray padding-35px-tb page-title-small top-space" style="margin-top: 72px; visibility: visible; animation-name: fadeIn;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-8 col-md-6 text-center text-md-left">
+                <!-- start page title -->
+                <h1 class="alt-font text-extra-dark-gray font-weight-600 mb-0 text-uppercase">Blog</h1>
+                <!-- end page title -->
+            </div>
+            <div class="col-xl-4 col-md-6 alt-font breadcrumb justify-content-center justify-content-md-end text-small sm-margin-10px-top">
+                <!-- start breadcrumb -->
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")" class="text-dark-gray">Anasayfa</a></li>
+                    <li><a href="@Url.Action("Index","Blog")" class="text-dark-gray">Blog</a></li>
+
+                </ul>
+                <!-- end breadcrumb -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="wow fadeIn bg-light testimonial-style3 mb-0" style="visibility: visible; animation-name: fadeIn; padding:50px 0">
+    <div class="container">
+        <div class="row justify-content-center">
+            @if (Model != null)
+            {
+                <div class="col-12 col-md-7 col-lg-12">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+
+                            <div class="col-12 col-lg-3 md-margin-two-bottom wow fadeIn last-paragraph-no-margin testimonial-style3" style="visibility: visible; animation-name: fadeIn;">
+                                <div class="testimonial-content-box padding-twelve-all bg-white border-radius-6 box-shadow arrow-bottom md-padding-seven-all sm-padding-eight-all">
+                                    @if (item.AuthorInfo != null)
+                                    {
+                                        <text>@item.AuthorInfo</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Hakkımda</text>
+                                    }
+                                </div>
+                                <div class="testimonial-box padding-25px-all sm-padding-20px-all">
+                                    <div class="image-box width-20">
+                                        @if (item.AuthorPhoto != null)
+                                        {
+                                            <img src="@item.AuthorPhoto" class="rounded-circle" alt="" data-no-retina="">
+                                        }
+                                        else
+                                        {
+                                            <img src="https://www.pikpng.com/pngl/m/16-168770_user-iconset-no-profile-picture-icon-circle-clipart.png" class="rounded-circle" alt="" data-no-retina="">
+
+                                        }
+                                    </div>
+                                    <div class="name-box padding-20px-left">
+                                        <div class="alt-font font-weight-600 text-small text-uppercase text-extra-dark-gray"><a href="@Url.Action("AuthorInfo","Author", new { username = item.UserName })">@item.AuthorName</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2>Henüz yazarımız bulunmamaktadır.</h2>
+            }
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,189 @@
+﻿
+<!doctype html>
+<html class="no-js" lang="tr">
+<head>
+    <!-- title -->
+    <title>Blog - MVC</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Meriç Alkışla">
+    <!-- description -->
+    <!-- keywords -->
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/images/favicon.png">
+    <link href="~/Areas/Admin/css/sb-admin-2.css" rel="stylesheet" />
+    <!-- animation -->
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- et line icon -->
+    <link rel="stylesheet" href="~/css/et-line-icons.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+    <!-- themify icon -->
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <!-- swiper carousel -->
+    <link rel="stylesheet" href="~/css/swiper.min.css">
+    <!-- justified gallery -->
+    <link rel="stylesheet" href="~/css/justified-gallery.min.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/css/magnific-popup.css" />
+    <!-- revolution slider -->
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/navigation.css">
+    <!-- bootsnav -->
+    <link rel="stylesheet" href="~/css/bootsnav.css">
+    <!-- style -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <!--[if IE]>
+        <script src="js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- start header -->
+    <header>
+        <!-- start navigation -->
+        <nav class="navbar navbar-default bootsnav navbar-fixed-top header-dark background-transparent nav-box-width navbar-expand-lg menu-center">
+            <div class="container-fluid nav-header-container">
+                <!-- start logo -->
+                <div class="">
+                    <a href="@Url.Action("Index","Home")" title="MMC" class="logo"><img src="~/images/logo105x40.png" data-rjs="~/images/logo105x40.png" class="logo-dark default" alt="MMC"><img src="~/images/logo105x40.png" data-rjs="~/images/logo105x40.png" alt="MMC" class="logo-light"></a>
+                </div>
+                <!-- end logo -->
+                <div class="col accordion-menu pr-0 pr-lg-3">
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar-collapse-toggle-1">
+                        <span class="sr-only">toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-collapse collapse justify-content-center" id="navbar-collapse-toggle-1">
+                        <ul id="accordion" class="nav navbar-nav no-margin alt-font text-normal" data-in="fadeIn" data-out="fadeOut">
+                            <li class="dropdown megamenu-fw">
+                                <a href="@Url.Action("Index","Home")">Anasayfa</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                            </li>
+
+                            <li class="dropdown megamenu-fw">
+                                <a href="@Url.Action("Contact","Home")">Yazarlarımız</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+
+                            </li>
+                            <li class="dropdown simple-dropdown">
+                                <a href="@Url.Action("Index","Blog")" title="Blog">Blog</a><i class="fas fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+
+                            </li>
+
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        <!-- end navigation -->
+    </header>
+    <!-- end header -->
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Footer")
+    <!-- end footer -->
+    <!-- start scroll to top -->
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
+    <!-- end scroll to top -->
+    <!-- javascript libraries -->
+    <!-- #region Scripts -->
+
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="~/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="~/js/skrollr.min.js"></script>
+    <script type="text/javascript" src="~/js/smooth-scroll.js"></script>
+    <script type="text/javascript" src="~/js/jquery.appear.js"></script>
+    <!-- menu navigation -->
+    <script type="text/javascript" src="~/js/bootsnav.js"></script>
+    <script type="text/javascript" src="~/js/jquery.nav.js"></script>
+    <!-- animation -->
+    <script type="text/javascript" src="~/js/wow.min.js"></script>
+    <!-- page scroll -->
+    <script type="text/javascript" src="~/js/page-scroll.js"></script>
+    <!-- swiper carousel -->
+    <script type="text/javascript" src="~/js/swiper.min.js"></script>
+    <!-- counter -->
+    <script type="text/javascript" src="~/js/jquery.count-to.js"></script>
+    <!-- parallax -->
+    <script type="text/javascript" src="~/js/jquery.stellar.js"></script>
+    <!-- magnific popup -->
+    <script type="text/javascript" src="~/js/jquery.magnific-popup.min.js"></script>
+    <!-- portfolio with shorting tab -->
+    <script type="text/javascript" src="~/js/isotope.pkgd.min.js"></script>
+    <!-- images loaded -->
+    <script type="text/javascript" src="~/js/imagesloaded.pkgd.min.js"></script>
+    <!-- pull menu -->
+    <script type="text/javascript" src="~/js/classie.js"></script>
+    <script type="text/javascript" src="~/js/hamburger-menu.js"></script>
+    <!-- counter -->
+    <script type="text/javascript" src="~/js/counter.js"></script>
+    <!-- fit video -->
+    <script type="text/javascript" src="~/js/jquery.fitvids.js"></script>
+
+    <!-- skill bars -->
+    <script type="text/javascript" src="~/js/skill.bars.jquery.js"></script>
+    <!-- justified gallery -->
+    <script type="text/javascript" src="~/js/justified-gallery.min.js"></script>
+    <!--pie chart-->
+    <script type="text/javascript" src="~/js/jquery.easypiechart.min.js"></script>
+    <!-- retina -->
+    <script type="text/javascript" src="~/js/retina.min.js"></script>
+    <!-- revolution -->
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <!-- revolution slider extensions (load below extensions JS files only on local file systems to make the slider work! The following part can be removed on server for on demand loading) -->
+    <!--<script type="text/javascript" src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>-->
+    <!-- setting -->
+    <script type="text/javascript" src="~/js/main.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#frmEmail").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("EmailSub", "Blog")",
+                data: $('#frmEmail').serialize(),
+                success: function (data) {
+                    if (data == "İşlem Başarılı") {
+                    toastr.success(data);
+                    }
+                    else {
+                    toastr.info(data);
+                    }
+                    $('#frmEmail')[0].reset()
+                }
+            });
+        })
+
+    </script>
+    <!-- #endregion -->
+</body>
+</html>

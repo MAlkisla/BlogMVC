@@ -1,0 +1,108 @@
+﻿@model Article
+@{
+    ViewBag.Title = "EditArticle";
+    var tags = "";
+    foreach (var item in ViewBag.tags)
+    {
+        tags += item.TagName + ",";
+    }
+}
+
+
+<div class="row">
+    <h2>Edit Article</h2>
+
+    @using (Html.BeginForm("EditArticle", "Articles", FormMethod.Post, new { @class = "col-md-12", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.PostedDate)
+        @Html.HiddenFor(x => x.ApplicationUserId)
+        @Html.HiddenFor(x => x.Author)
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Category</label>
+                    @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.categories, "Id", "CategoryName"), "Kategori Seçiniz", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ArticleTitle)
+                    @Html.TextBoxFor(x => x.ArticleTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.ArticleTitle)
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    @*<input name="@Model.Tags" type="text" value="@tags" class="form-control" data-role="tagsinput" />*@
+                    <input class="form-control sr-only" data-role="tagsinput" id="Tags" name="Tags" required="required" type="text" value="@tags">
+                    @*@Html.TextBoxFor(x => x.Tags, new { @class = "form-control", required = "required", @data_role = "tagsinput" ,value="@tags" })*@
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ArticlePhoto)
+                    @*@Html.TextBox("file", null, new {value=Model.ArticlePhoto ,type = "file", @class = "form-control", onchange = "ResimYukle(this)" })*@
+                    <input id="file" class="form-control" onchange="ResimYukle(this)" name="file" type="file" value="@Model.ArticlePhoto" />
+                    <input id="yol" name="yol" type="hidden" value="@Model.ArticlePhoto" />
+                    @Html.ValidationMessageFor(x => x.ArticlePhoto)
+                </div>
+            </div>
+            <div class="col-md-6 my-3">
+                <img width="60%" id="targetImage" src="@Model.ArticlePhoto" alt="" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ArticleContent)
+            @Html.TextAreaFor(x => x.ArticleContent, new { @class = "ckeditor" })
+            @Html.ValidationMessageFor(x => x.ArticleContent)
+        </div>
+
+        <button type="submit" class="btn btn-warning float-right">
+            <i class="fas fa-plus"></i> Kaydet
+        </button>
+
+    }
+
+</div>
+
+
+
+@section scripts{
+    <script>
+        function ResimYukle(input) {
+
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#targetImage").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+                $("#targetImage").show();
+            }
+        }
+
+        @*function Kaydet() {
+            var file = $("#inputImageBrowser").get(0).files;
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+
+        $.ajax({
+            type: "post",
+            dataType: "JSON",
+            url: "@Url.Action("NewArticle","Articles")",
+            //url: "/Fotograf/Ekle",
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+        });
+        }*@
+
+    </script>
+}
+
