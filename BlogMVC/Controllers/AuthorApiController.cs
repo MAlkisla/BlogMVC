@@ -11,7 +11,6 @@ using System.Web.Http.Cors;
 
 namespace BlogMVC.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AuthorApiController : ApiController
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -34,7 +33,11 @@ namespace BlogMVC.Controllers
         [HttpPut]
         public IHttpActionResult PutAuthors(AuthorDto authorDto, string id)
         {
-            var user = db.Users.FirstOrDefault(x => x.Id == id);
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+            var user = db.Users.Find(id);
             user.AuthorInfo = authorDto.AuthorInfo;
             user.AuthorPhoto = authorDto.AuthorPhoto;
             user.AuthorName = authorDto.AuthorName;

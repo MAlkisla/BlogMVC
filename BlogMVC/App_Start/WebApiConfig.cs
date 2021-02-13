@@ -18,7 +18,7 @@ namespace BlogMVC.App_Start
                     routeTemplate: "api/{controller}/{id}",
                     defaults: new { id = RouteParameter.Optional }
                 );
-            config.EnableCors();
+            //config.EnableCors();
 
 
         }
